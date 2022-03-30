@@ -1,4 +1,4 @@
-import { useLinkProps } from "@react-navigation/native";
+
 import { Button } from "react-native-paper";
 
 export const StyledButton = ({title, act}) => {

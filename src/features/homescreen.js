@@ -1,13 +1,15 @@
 import React from "react"
 import { ButtonContainer, TitleContainer, Title } from "./screenstyles"
-import { View, TouchableOpacity} from "react-native"
-import { StyledButton } from "../components/button"
+import { View} from "react-native"
 import { Button } from "react-native-paper"
+
 
 
 
 export const Home = ({navigation}) => {
 
+
+   
 
 
     return(

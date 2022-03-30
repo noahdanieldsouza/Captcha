@@ -8,9 +8,13 @@ import { SafeArea } from "../components/spacer"
 
 export const GalleryScreen = ({navigation}) => {
 
-    const Click = () => {
-        console.log("Clicked")
+    const photo = {
+        name: "Summer Spring",
+        place: "Sumner",
+        people: "Noah",
+        vibes: "Happy"
     }
+
     return (
         <SafeArea>
    
@@ -21,7 +25,7 @@ export const GalleryScreen = ({navigation}) => {
         <FlatList
         
         data = {[{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}]}
-        renderItem={() => (<TouchableOpacity onPress={() => navigation.navigate("PhotoDetails")}><StyledCard /></TouchableOpacity>)}
+        renderItem={() => (<TouchableOpacity onPress={() => navigation.navigate("PhotoDetails")}><StyledCard photo = {photo}/></TouchableOpacity>)}
         keyExtractor = {(item) => item.name}
         contentContainerStyle = {{padding: 16}}
         />

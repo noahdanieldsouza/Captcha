@@ -11,6 +11,7 @@ import { Favorites } from "../../features/favorites";
 
 
 
+
 const Tab = createBottomTabNavigator();
 
   
