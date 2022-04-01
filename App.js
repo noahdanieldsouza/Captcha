@@ -1,17 +1,15 @@
 import React from "react"
 import { SafeArea } from "./src/components/spacer"
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Ionicons} from "@expo/vector-icons"
-import { Home } from "./src/features/homescreen";
-import { Favorites } from "./src/features/favorites";
-import { GalleryScreen } from "./src/features/gallery";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infastructure";
 import {useFonts as useOswald, Oswald_400Regular}from "@expo-google-fonts/oswald"
 import {useFonts as useLato, Lato_400Regular}from "@expo-google-fonts/lato"
 import {useFonts as useRoboto, Roboto_400Regular}from "@expo-google-fonts/roboto"
-import { Navigation } from "./src/infastructure/navigation";
+import { Navigation } from "./src/infastructure/navigation"
+import { PhotosContextProvider } from "./src/services/photos/photos.context";
+
 
 
 
@@ -63,13 +61,15 @@ const TAB_ICON = {
   }
   
   return (
-    <>
+<PhotosContextProvider>
     <ThemeProvider theme = {theme}>
     <SafeArea>
     <Navigation/>
       
     </SafeArea>
     </ThemeProvider>
-    </>
+
+    </PhotosContextProvider>
+   
   )
 }

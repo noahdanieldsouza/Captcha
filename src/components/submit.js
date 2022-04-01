@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from "styled-components"
 import { SafeArea } from "./spacer"
 import {  TextInput } from "react-native-paper"
@@ -14,15 +14,24 @@ height: ${(props) => props.theme.sizes[3]}
 margin: ${(props) => props.theme.space[3]}
 `
 
+
+
 export const Submission = () => {
+
+const [photo, setPhoto] = useState([])
+
+console.log(photo)
     return(
         <SafeArea>
             <TitleContainer>
                 <Title>Photo</Title>
             </TitleContainer>
-        <DetailFields label = "Place"/>
-        <DetailFields label = "People"/>
-        <DetailFields label = "Vibes"/>
+        <DetailFields label = "Place"  onSubmitEditing={({ nativeEvent }) => {
+              setPhoto([...photo, nativeEvent.text])}} />
+        <DetailFields label = "People"  onSubmitEditing={({ nativeEvent }) => {
+              setPhoto([...photo, nativeEvent.text])}}/>
+        <DetailFields label = "Vibes"  onSubmitEditing={({ nativeEvent }) => {
+              setPhoto([...photo, nativeEvent.text])}}/>
 
         <ButtonContainer>
 
@@ -30,6 +39,7 @@ export const Submission = () => {
         <StyledButton title = "photo library"></StyledButton>
 
         </ButtonContainer>
+        <StyledButton title = "submit" ></StyledButton>
 
         </SafeArea>
     )
