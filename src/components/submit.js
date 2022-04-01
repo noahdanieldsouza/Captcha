@@ -1,8 +1,10 @@
-import React, {useState} from "react"
+import React, {useState, useContext} from "react"
 import styled from "styled-components"
 import { SafeArea } from "./spacer"
 import {  TextInput } from "react-native-paper"
 import { StyledButton } from "./button"
+import { PhotoContext } from "../services/photos/photos.context"
+import { Button } from "react-native-paper"
 
 
 import { ButtonContainer, TitleContainer, Title } from "../features/screenstyles"
@@ -18,9 +20,12 @@ margin: ${(props) => props.theme.space[3]}
 
 export const Submission = () => {
 
+const {addToPhotos,  photoList} = useContext(PhotoContext)
+
 const [photo, setPhoto] = useState([])
 
-console.log(photo)
+console.log(photo, "primary")
+console.log(photoList, "final")
     return(
         <SafeArea>
             <TitleContainer>
@@ -39,7 +44,12 @@ console.log(photo)
         <StyledButton title = "photo library"></StyledButton>
 
         </ButtonContainer>
-        <StyledButton title = "submit" ></StyledButton>
+        <Button onPress = {() => {addToPhotos(photo)}} style = {{margin: 5, flex: 1}}
+        color = "blue"
+        mode = "contained"
+        children = "Upload a Memory"
+        ></Button>
+           
 
         </SafeArea>
     )

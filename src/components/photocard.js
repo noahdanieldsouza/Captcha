@@ -24,7 +24,7 @@ return (
     <NavigationContainer independent = {true}>
     <PhotoCard>
         <LabelContainer>
-        <Label style = {{padding: 3}}>{name}</Label>
+        <Label style = {{padding: 3}}>{People}</Label>
         </LabelContainer>
         <RestaurantCardCover></RestaurantCardCover>
        

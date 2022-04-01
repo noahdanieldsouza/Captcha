@@ -1,16 +1,18 @@
-import React from "react"
+import React, {useContext} from "react"
 import { Searchbar } from "react-native-paper"
 import { StyledCard } from "../components/photocard" 
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler"
 import { SafeArea } from "../components/spacer"
+import { PhotoContext } from "../services/photos/photos.context"
 
 
 
 export const GalleryScreen = ({navigation}) => {
 
-    const Click = () => {
-        console.log("Clicked")
-    }
+
+    const {photoList} = useContext(PhotoContext);
+
+    console.log(photoList.length)
     return (
         <SafeArea>
    
@@ -20,8 +22,8 @@ export const GalleryScreen = ({navigation}) => {
         
         <FlatList
         
-        data = {[{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: 5}, {name: 6}, {name: 7}, {name: 8}]}
-        renderItem={() => (<TouchableOpacity onPress={() => navigation.navigate("PhotoDetails")}><StyledCard /></TouchableOpacity>)}
+        data = {photoList}
+        renderItem={() => (<TouchableOpacity onPress={() => navigation.navigate("PhotoDetails")}><StyledCard photo = {photoList[0]}/></TouchableOpacity>)}
         keyExtractor = {(item) => item.name}
         contentContainerStyle = {{padding: 16}}
         />

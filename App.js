@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useContext} from "react"
 import { SafeArea } from "./src/components/spacer"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Ionicons} from "@expo/vector-icons"
@@ -9,6 +9,7 @@ import {useFonts as useLato, Lato_400Regular}from "@expo-google-fonts/lato"
 import {useFonts as useRoboto, Roboto_400Regular}from "@expo-google-fonts/roboto"
 import { Navigation } from "./src/infastructure/navigation"
 import { PhotosContextProvider } from "./src/services/photos/photos.context";
+import { PhotoContext } from "./src/services/photos/photos.context";
 
 
 
@@ -16,6 +17,8 @@ import { PhotosContextProvider } from "./src/services/photos/photos.context";
 
 
 export default function App ()  {
+
+
 
 
   const oswaldLoaded = useOswald({
