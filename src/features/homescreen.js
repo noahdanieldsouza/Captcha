@@ -13,7 +13,7 @@ export const Home = ({navigation}) => {
     return(
      <> 
     <TitleContainer> 
-        <Title> Make some Memories</Title>
+        <Title> Make Some Memories</Title>
     </TitleContainer>
     <View style = {{marginTop: 100}}/>
  <ButtonContainer>

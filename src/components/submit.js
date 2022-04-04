@@ -3,11 +3,12 @@ import styled from "styled-components"
 import { SafeArea } from "./spacer"
 import {  TextInput } from "react-native-paper"
 import { StyledButton } from "./button"
-import { PhotoContext } from "../services/photos/photos.context"
+import { PhotoContext, PhotosContextProvider } from "../services/photos/photos.context"
 import { Button } from "react-native-paper"
 
 
-import { ButtonContainer, TitleContainer, Title } from "../features/screenstyles"
+import { ButtonContainer, DetailTitleContainer, Title } from "../features/screenstyles"
+
 
 const DetailFields = styled(TextInput)`
 
@@ -17,38 +18,82 @@ margin: ${(props) => props.theme.space[3]}
 `
 
 
+export const Submission = ({navigation}) => {
 
-export const Submission = () => {
 
-const {addToPhotos,  photoList} = useContext(PhotoContext)
 
-const [photo, setPhoto] = useState([])
+const {addToPhotos, photoList, setPhotoList} = useContext(PhotoContext)
+
+const [photo, setPhoto] = useState({})
+
+
+
+photo[Symbol.iterator] = function* () { 
+
+  
+
+    
+
+
+};
+
+
+
+
+const setPlace = ( value) => {
+    setPhoto( {...photo, "place": value})
+}
+
+const setName = ( value) => {
+    setPhoto({...photo, "people": value } )
+}
+const setVibe = ( value) => {
+    setPhoto({...photo, "vibes" : value} )
+}
 
 console.log(photo, "primary")
-console.log(photoList, "final")
+console.log(photoList[photoList.length - 1])
+
     return(
         <SafeArea>
-            <TitleContainer>
+            <DetailTitleContainer>
                 <Title>Photo</Title>
-            </TitleContainer>
-        <DetailFields label = "Place"  onSubmitEditing={({ nativeEvent }) => {
-              setPhoto([...photo, nativeEvent.text])}} />
-        <DetailFields label = "People"  onSubmitEditing={({ nativeEvent }) => {
-              setPhoto([...photo, nativeEvent.text])}}/>
-        <DetailFields label = "Vibes"  onSubmitEditing={({ nativeEvent }) => {
-              setPhoto([...photo, nativeEvent.text])}}/>
+            </DetailTitleContainer>
+        <DetailFields label = "Place"  onChangeText={text => {
+              setPlace(text)}} />
+        <DetailFields label = "People"  onChangeText ={text => {
+              setName( text)}}/>
+        <DetailFields label = "Vibes"  onChangeText = {text => {
+              setVibe( text)}}/>
 
         <ButtonContainer>
 
-        <StyledButton title = "take photo"></StyledButton>
+        
+        <Button onPress = {() => { navigation.navigate("CameraScreen")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
+        color = "blue"
+        mode = "contained"
+        children = "Take Photo"
+        
+        ></Button>
         <StyledButton title = "photo library"></StyledButton>
 
         </ButtonContainer>
-        <Button onPress = {() => {addToPhotos(photo)}} style = {{margin: 5, flex: 1}}
+
+
+        <Button onPress = {() => {addToPhotos(photo), navigation.navigate("Home")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
         color = "blue"
         mode = "contained"
-        children = "Upload a Memory"
+        children = "Submit"
+        
         ></Button>
+
+  <Button onPress = {() => {setPhoto([]), navigation.navigate("Home")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
+        color = "blue"
+        mode = "contained"
+        children = "Cancel"
+        
+        ></Button>
+
            
 
         </SafeArea>

@@ -6,6 +6,8 @@ export const PhotoContext = createContext();
 export const PhotosContextProvider = ({ children }) => {
   const [photoList, setPhotoList] = useState([]);
 
+  
+
   const savePhotoList = async () => {
     try {  
       await AsyncStorage.setItem(
@@ -28,6 +30,8 @@ export const PhotosContextProvider = ({ children }) => {
     }
   };
 
+  
+
   useEffect(() => {
     loadPhotoList();
   }, []);
@@ -39,21 +43,33 @@ export const PhotosContextProvider = ({ children }) => {
 
   const add = (photo) => {
     setPhotoList([...photoList, photo]);
+    console.log("added")
   };
+
+
 
   const remove = (photo) => {
     const newPhotos = photoList.filter(
       (x) => x.name !== photo.placeId
     );
 
+   
+
     setPhotoList(newPhotos);
   };
+
+  const choosePhotoList = (king) => {
+      setPhotoList(king)
+  }
+
+  
   return (
     <PhotoContext.Provider
       value={{
         photoList,
         addToPhotos: add,
         removeFromPhotos: remove,
+        setPhotoList: choosePhotoList,
       }}
     >
       {children}
