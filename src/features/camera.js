@@ -9,7 +9,7 @@ width: 100%;
 height: 100%
 `
 
-export const CameraScreen = () => {
+export const CameraScreen = ({navigation}) => {
     const [hasPermission, setHasPermission] = useState(null)
     const cameraRef = useRef(null)
 
@@ -17,14 +17,23 @@ export const CameraScreen = () => {
         if (cameraRef) {
           const photo = await cameraRef.current.takePictureAsync();
           AsyncStorage.setItem()
-          console.log(photo);
+          navigation.navigate(
+           'SubmissionScreen',
+            { props: photo.uri },
+           
+          );
+
+         // console.log(photo.uri);
         }
       };
+
+    
 
     useEffect(() => {
         (async () => {
           const { status } = await Camera.requestCameraPermissionsAsync();
           setHasPermission(status === 'granted');
+          
         })();
       }, []);
 

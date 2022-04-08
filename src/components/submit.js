@@ -5,9 +5,12 @@ import {  TextInput } from "react-native-paper"
 import { StyledButton } from "./button"
 import { PhotoContext, PhotosContextProvider } from "../services/photos/photos.context"
 import { Button } from "react-native-paper"
+import { ScrollView } from "react-native"
+import { RestaurantCardCover } from "../features/screenstyles"
 
 
 import { ButtonContainer, DetailTitleContainer, Title } from "../features/screenstyles"
+import { Image } from "react-native"
 
 
 const DetailFields = styled(TextInput)`
@@ -18,13 +21,23 @@ margin: ${(props) => props.theme.space[3]}
 `
 
 
-export const Submission = ({navigation}) => {
+export const Submission = ({navigation, route}) => {
+
+ const picture  = route.params;
+
+
 
 
 
 const {addToPhotos, photoList, setPhotoList} = useContext(PhotoContext)
 
 const [photo, setPhoto] = useState({})
+
+console.log(picture)
+
+
+
+
 
 
 
@@ -51,23 +64,29 @@ const setVibe = ( value) => {
     setPhoto({...photo, "vibes" : value} )
 }
 
-console.log(photo, "primary")
-console.log(photoList[photoList.length - 1])
+
+
+console.log(photo, "picture")
+
+
+
 
     return(
         <SafeArea>
+            <ScrollView>
             <DetailTitleContainer>
                 <Title>Photo</Title>
             </DetailTitleContainer>
-        <DetailFields label = "Place"  onChangeText={text => {
-              setPlace(text)}} />
+        <DetailFields label = "Place"  onChangeText={(text) => {
+               setPlace(text)}} />
         <DetailFields label = "People"  onChangeText ={text => {
               setName( text)}}/>
         <DetailFields label = "Vibes"  onChangeText = {text => {
-              setVibe( text)}}/>
+              setVibe( text)} }/>
 
         <ButtonContainer>
 
+           
         
         <Button onPress = {() => { navigation.navigate("CameraScreen")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
         color = "blue"
@@ -80,7 +99,14 @@ console.log(photoList[photoList.length - 1])
         </ButtonContainer>
 
 
-        <Button onPress = {() => {addToPhotos(photo), navigation.navigate("Home")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
+{picture?
+ 
+        <RestaurantCardCover  source = {{uri:  picture.props}}></RestaurantCardCover>:
+        null
+}
+
+
+        <Button onPress = {() => { addToPhotos({...photo, "uri": picture.props}), navigation.navigate("Home")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
         color = "blue"
         mode = "contained"
         children = "Submit"
@@ -94,7 +120,14 @@ console.log(photoList[photoList.length - 1])
         
         ></Button>
 
-           
+<Button onPress = {() => {setPhotoList([])}} style = {{margin: 5, flex: 1, alignItems: "center"}}
+        color = "blue"
+        mode = "contained"
+        children =  "Cancel"
+        
+        ></Button>
+
+           </ScrollView>
 
         </SafeArea>
     )

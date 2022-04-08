@@ -3,6 +3,7 @@ import { PhotoCard, RestaurantCardCover, Label, LabelContainer } from "../featur
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { PictureScreen } from "./pictureScreen"
+import { Image } from "react-native"
 
 
 
@@ -11,37 +12,31 @@ import { PictureScreen } from "./pictureScreen"
 
 
 export const StyledCard = (photo  = {}) => {
-   
+  
  const people = photo.photo.item.people
- const place = photo.photo.item.place
- const vibes = photo.photo.item.vibes
-
-   console.log(photo.photo.item.people, "yep")
+ const uri = photo.photo.item.uri
+ 
+   
 
 
 
   
 
-    const Stack = createNativeStackNavigator();
+    
 return (
-    <NavigationContainer independent = {true}>
+  
     <PhotoCard>
         <LabelContainer>
         <Label style = {{padding: 3}}>{people}</Label>
         </LabelContainer>
-        <RestaurantCardCover></RestaurantCardCover>
+
+        <RestaurantCardCover key = {uri} source = {{uri: uri}}></RestaurantCardCover>
        
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Picture"
-          component={PictureScreen}
-          options={{ title: 'Welcome' }}
-        />
        
-      </Stack.Navigator>
+
 
     </PhotoCard>
-    </NavigationContainer>
+   
 )
 
 }
