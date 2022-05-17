@@ -7,10 +7,10 @@ import { CameraScreen } from "../../features/camera";
 const CameraStack = createStackNavigator();
 export const HomeNavigation = () => {
     return(
-        <CameraStack.Navigator headerMode="none" screenOptions={{...TransitionPresets.ModalPresentationIOS}}>
+        <CameraStack.Navigator  screenOptions={{...TransitionPresets.ModalPresentationIOS, headerShown : false}}>
         
         <CameraStack.Screen
-          name="Home"
+          name="Camera"
           component={Home}
         />
         <CameraStack.Screen

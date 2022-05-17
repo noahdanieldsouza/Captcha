@@ -26,22 +26,31 @@ font-family: ${(props) => props.theme.fonts.body}
 export const ButtonContainer = styled(View) `
 padding: ${(props) => props.theme.space[3]};
 align-items: center;
-flex-direction: row;
+flex:0.5
+
+
+
+
+
+`
+export const ButtonContainer1 = styled(View) `
+padding: ${(props) => props.theme.space[1]};
+align-items: center;
+flex-direction: column;
+flex: 1
 
 `
 
 export const PhotoCard = styled(Card) `
-padding: ${(props) => props.theme.space[3]}
-margin: ${(props) => props.theme.space[3]}
-background-color: ${(props) => props.theme.colors.ui.primary}
+padding: ${(props) => props.theme.space[1]}
+margin: ${(props) => props.theme.space[2]}
+
+
 
 `
 
 export const RestaurantCardCover = styled(Card.Cover)`
-  padding: ${(props) => props.theme.space[1]}
- 
-  
-  
+padding: ${(props) => props.theme.space[0]} 
 `;
 
 export const LabelContainer = styled(View) `
@@ -49,9 +58,9 @@ align-items: center
 `
 export const Label = styled(Text) `
 font-size: ${(props) => props.theme.fontSizes.body};
-margin-bottom:    ${(props) => props.theme.space[3]};
+margin-top:    ${(props) => props.theme.space[1]};
 font-family: ${(props) => props.theme.fonts.heading};
-color: ${(props) => props.theme.colors.text.inverse}
+color: ${(props) => props.theme.colors.text.primary}
 
 
 `

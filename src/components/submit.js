@@ -2,15 +2,14 @@ import React, {useState, useContext} from "react"
 import styled from "styled-components"
 import { SafeArea } from "./spacer"
 import {  TextInput } from "react-native-paper"
-import { StyledButton } from "./button"
-import { PhotoContext, PhotosContextProvider } from "../services/photos/photos.context"
+import { PhotoContext } from "../services/photos/photos.context"
 import { Button } from "react-native-paper"
-import { ScrollView } from "react-native"
+import { ScrollView, View,  } from "react-native"
 import { RestaurantCardCover } from "../features/screenstyles"
-
+import { TouchableOpacity } from "react-native"
 
 import { ButtonContainer, DetailTitleContainer, Title } from "../features/screenstyles"
-import { Image } from "react-native"
+
 
 
 const DetailFields = styled(TextInput)`
@@ -20,6 +19,14 @@ height: ${(props) => props.theme.sizes[3]}
 margin: ${(props) => props.theme.space[3]}
 `
 
+const ImagePreview = styled(RestaurantCardCover) `
+height: 300
+`
+const FormControl = styled(View)`
+padding: 20px
+marginTop: 20
+
+`
 
 export const Submission = ({navigation, route}) => {
 
@@ -81,8 +88,15 @@ console.log(photo, "picture")
                setPlace(text)}} />
         <DetailFields label = "People"  onChangeText ={text => {
               setName( text)}}/>
-        <DetailFields label = "Vibes"  onChangeText = {text => {
+        <DetailFields  label = "Vibes"  onChangeText = {text => {
               setVibe( text)} }/>
+
+
+{picture ?
+ 
+ <ImagePreview  source = {{uri:  picture.props}}></ImagePreview>:
+ null
+}
 
         <ButtonContainer>
 
@@ -93,39 +107,34 @@ console.log(photo, "picture")
         mode = "contained"
         children = "Take Photo"
         
-        ></Button>
-        <StyledButton title = "photo library"></StyledButton>
+        ></Button> 
+        
+        
 
         </ButtonContainer>
 
 
-{picture?
- 
-        <RestaurantCardCover  source = {{uri:  picture.props}}></RestaurantCardCover>:
-        null
-}
 
-
-        <Button onPress = {() => { addToPhotos({...photo, "uri": picture.props}), navigation.navigate("Home")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
+<FormControl >
+<TouchableOpacity>
+        <Button onPress = {() => { addToPhotos({...photo, "uri": picture.props}), navigation.navigate("Camera")}} style = {{margin: 3, flex:0.5, alignItems: "center"}}
         color = "blue"
         mode = "contained"
         children = "Submit"
         
         ></Button>
+</TouchableOpacity>
 
-  <Button onPress = {() => {setPhoto([]), navigation.navigate("Home")}} style = {{margin: 5, flex: 1, alignItems: "center"}}
+
+  <Button onPress = {() => { setPhoto([]), navigation.navigate("Camera")}} style = {{margin: 5, flex:0.5, alignItems: "center"}}
         color = "blue"
         mode = "contained"
         children = "Cancel"
         
         ></Button>
 
-<Button onPress = {() => {setPhotoList([])}} style = {{margin: 5, flex: 1, alignItems: "center"}}
-        color = "blue"
-        mode = "contained"
-        children =  "Cancel"
-        
-        ></Button>
+</FormControl>
+
 
            </ScrollView>
 
