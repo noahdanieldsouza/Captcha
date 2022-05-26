@@ -48,12 +48,7 @@ console.log(picture)
 
 
 
-photo[Symbol.iterator] = function* () { 
-
-  
-
-    
-
+photo[Symbol.iterator] = function* () {
 
 };
 
@@ -71,6 +66,15 @@ const setVibe = ( value) => {
     setPhoto({...photo, "vibes" : value} )
 }
 
+const addPhoto = () => {
+    if (picture){
+        addToPhotos({...photo, "uri": picture.props } )
+    }
+        addToPhotos({...photo} )
+    }
+
+
+
 
 
 console.log(photo, "picture")
@@ -78,7 +82,7 @@ console.log(photo, "picture")
 
 
 
-    return(
+    return (
         <SafeArea>
             <ScrollView>
             <DetailTitleContainer>
@@ -117,7 +121,7 @@ console.log(photo, "picture")
 
 <FormControl >
 <TouchableOpacity>
-        <Button onPress = {() => { addToPhotos({...photo, "uri": picture.props}), navigation.navigate("Camera")}} style = {{margin: 3, flex:0.5, alignItems: "center"}}
+        <Button onPress = {() => { addPhoto()  , navigation.navigate("Camera")}} style = {{margin: 3, flex:0.5, alignItems: "center"}}
         color = "blue"
         mode = "contained"
         children = "Submit"

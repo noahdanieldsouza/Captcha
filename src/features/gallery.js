@@ -55,5 +55,6 @@ const filteredPhotos = photoList.filter((photo ={}) =>{
             contentContainerStyle = {{padding: 15}}  
              />
         </SafeArea>
-    )
+        
+        )
 }
