@@ -20,7 +20,7 @@ export const StyledCard = (photo  = {}) => {
   
 
     
-return (
+return (  
   
     <PhotoCard>
        
