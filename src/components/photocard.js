@@ -24,7 +24,7 @@ return (
   
     <PhotoCard>
        
-        <RestaurantCardCover  key = {uri} source = {{uri: uri}}></RestaurantCardCover>
+        <RestaurantCardCover  key  = {uri} source = {{uri: uri}}></RestaurantCardCover>
 
         
        

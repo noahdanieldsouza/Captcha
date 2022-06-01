@@ -16,7 +16,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
+    "ios": {    
       "supportsTablet": true,
       "bundleIdentifier": "CaptchaTest"
     },
