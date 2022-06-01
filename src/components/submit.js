@@ -10,6 +10,7 @@ import { TouchableOpacity } from "react-native"
 
 import { ButtonContainer, DetailTitleContainer, Title } from "../features/screenstyles"
 
+//addToPhotos({...photo, "uri": picture.props } )
 
 
 const DetailFields = styled(TextInput)`
@@ -67,17 +68,20 @@ const setVibe = ( value) => {
 }
 
 const addPhoto = () => {
-    if (picture){
+    if (picture ){
         addToPhotos({...photo, "uri": picture.props } )
+
     }
-        addToPhotos({...photo} )
+    else{
+   
+    }
     }
 
 
 
 
 
-console.log(photo, "picture")
+
 
 
 
